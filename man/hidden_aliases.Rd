@@ -11,6 +11,7 @@
 \alias{show,MsBackendRawFileReader-method}
 \alias{peaksData,MsBackendRawFileReader-method}
 \alias{intensity,MsBackendRawFileReader-method}
+\alias{mz,MsBackendRawFileReader-method}
 \title{Internal page for hidden aliases}
 \usage{
 filterScan(object, filter, ...)
@@ -24,6 +25,8 @@ scanType(object, ...)
 \S4method{peaksData}{MsBackendRawFileReader}(object, ..., BPPARAM = bpparam())
 
 \S4method{intensity}{MsBackendRawFileReader}(object, ..., BPPARAM = bpparam())
+
+\S4method{mz}{MsBackendRawFileReader}(object, ..., BPPARAM = bpparam())
 }
 \description{
 For S4 methods that require a documentation entry but only clutter the index.

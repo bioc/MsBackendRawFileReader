@@ -5,6 +5,7 @@
 \alias{MsBackendRawFileReader}
 \alias{filterScan,MsBackendRawFileReader-method}
 \alias{scanType,MsBackendRawFileReader-method}
+\alias{scanIndex,MsBackendRawFileReader-method}
 \title{MsBackendRawFileReader}
 \usage{
 MsBackendRawFileReader()
@@ -12,6 +13,8 @@ MsBackendRawFileReader()
 \S4method{filterScan}{MsBackendRawFileReader}(object, filter = character(), ...)
 
 \S4method{scanType}{MsBackendRawFileReader}(object, ...)
+
+\S4method{scanIndex}{MsBackendRawFileReader}(object, ...)
 }
 \arguments{
 \item{object}{MsBackendRawFileReader object}
@@ -24,6 +27,8 @@ MsBackendRawFileReader()
 a MsBackendRawFileReader object.
 
 a character vector of scan types.
+
+a character vector of scan index.
 }
 \description{
 MsBackendRawFileReader
@@ -35,4 +40,7 @@ beRaw |> MsBackendRawFileReader::filterScan('Ms')
 beRaw <- Spectra::backendInitialize(MsBackendRawFileReader::MsBackendRawFileReader(),
   files = rawrr::sampleFilePath())
 scanType(beRaw) |> head()
+beRaw <- Spectra::backendInitialize(MsBackendRawFileReader::MsBackendRawFileReader(),
+  files = rawrr::sampleFilePath())
+scanIndex(beRaw) |> head()
 }

@@ -154,6 +154,14 @@ setMethod("intensity", "MsBackendRawFileReader", function(object, ..., BPPARAM =
   IRanges::NumericList(lapply(peaksData(object, BPPARAM = BPPARAM), "[", , 2), compress = FALSE)
 })
 
+#' @importClassesFrom IRanges NumericList
+#' @rdname hidden_aliases
+#' @importMethodsFrom ProtGenerics mz
+#' @exportMethod mz
+setMethod("mz", "MsBackendRawFileReader", function(object, ..., BPPARAM = bpparam()) {
+  IRanges::NumericList(lapply(peaksData(object, BPPARAM = BPPARAM), "[", , 1), compress = FALSE)
+})
+
 
 #' @exportMethod filterScan
 #' @rdname MsBackendRawFileReader
@@ -188,3 +196,18 @@ setMethod("scanType", "MsBackendRawFileReader",
               return(list())
             object@spectraData$scanType
           })
+
+#' @exportMethod scanIndex
+#' @rdname MsBackendRawFileReader
+#' @return a character vector of scan index.
+#' @examples
+#' beRaw <- Spectra::backendInitialize(MsBackendRawFileReader::MsBackendRawFileReader(),
+#'   files = rawrr::sampleFilePath())
+#' scanIndex(beRaw) |> head()
+setMethod("scanIndex", "MsBackendRawFileReader",
+          function(object, ...) {
+            if (!length(object))
+              return(list())
+            object@spectraData$scanIndex
+          })
+
