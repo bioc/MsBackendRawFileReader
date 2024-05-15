@@ -53,7 +53,7 @@ NULL
   colnames(hdr)[colnames(hdr) == "scan"] <- "scanIndex"
   #colnames(hdr)[colnames(hdr) == "precursorScanNum"] <- "precScanNum"
   colnames(hdr)[colnames(hdr) == "precursorMass"] <- "precursorMz"
-  colnames(hdr)[colnames(hdr) == "rtinseconds"] <- "rtime"
+  colnames(hdr)[colnames(hdr) == "StartTime"] <- "rtime"
   colnames(hdr)[colnames(hdr) == "MSOrder"] <- "msLevel"
   #colnames(hdr)[colnames(hdr) == "isolationWindowTargetMZ"] <- "isolationWindowTargetMz"
   #hdr$isolationWindowLowerMz <- hdr$isolationWindowTargetMz -
