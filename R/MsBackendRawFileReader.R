@@ -106,8 +106,8 @@ setMethod("peaksData", "MsBackendRawFileReader",
                                                                          scanIndex, BPPARAM=BPPARAM)
               
               rv <- lapply(pls, function(p){
-                if (all(c("centroid.mz", "centroid.intensity", "noises",
-                          "resolutions", "baselines") %in% colnames(p))){
+                if (all(c("centroid.mZ", "centroid.intensity", "noises",
+                          "resolutions", "baselines") %in% names(p))){
                   
                   m <- as.matrix(cbind(p$centroid.mZ,
                                        p$centroid.intensity,
@@ -117,7 +117,7 @@ setMethod("peaksData", "MsBackendRawFileReader",
                   
                   colnames(m) <- c("mz", "intensity",
                                    "noises", "resolutions", "baselines")
-                }else if (all(c("centroid.mz", "centroid.intensity") %in% colnames(p) )){
+                }else if (all(c("centroid.mZ", "centroid.intensity") %in% names(p) )){
                   m <- as.matrix(cbind(p$centroid.mZ, p$centroid.intensity))
                   colnames(m) <- c("mz", "intensity")
                 }else if (length(p$mZ) > 0){
@@ -126,7 +126,7 @@ setMethod("peaksData", "MsBackendRawFileReader",
                   colnames(m) <- c("mz", "intensity")
                 }
                 else{
-                  warning(paste0("Scan ", p$scan, " has an empyt peaklist!"))
+                  warning(paste0("Scan ", p$scan, " has an empty peaklist!"))
                   m <- matrix(, 0, 2)
                   colnames(m) <- c("mz", "intensity")
                 }
