@@ -198,6 +198,7 @@ setMethod("scanType", "MsBackendRawFileReader",
           })
 
 #' @exportMethod scanIndex
+#' @importMethodsFrom ProtGenerics scanIndex
 #' @rdname MsBackendRawFileReader
 #' @return a character vector of scan index.
 #' @examples
