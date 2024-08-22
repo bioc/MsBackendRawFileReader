@@ -110,13 +110,14 @@ setMethod("peaksData", "MsBackendRawFileReader",
                           "resolutions", "baselines") %in% names(p))){
                   
                   m <- as.matrix(cbind(p$centroid.mZ,
-                                       p$centroid.intensity,
-                                       p$noises,
-                                       p$resolutions,
-                                       p$baselines))
+                                       p$centroid.intensity))
+## TODO(cp): add it 
+                                       #p$noises,
+                                       #p$resolutions,
+                                       #p$baselines))
                   
-                  colnames(m) <- c("mz", "intensity",
-                                   "noises", "resolutions", "baselines")
+                  colnames(m) <- c("mz", "intensity")
+                            #       "noises", "resolutions", "baselines")
                 }else if (all(c("centroid.mZ", "centroid.intensity") %in% names(p) )){
                   m <- as.matrix(cbind(p$centroid.mZ, p$centroid.intensity))
                   colnames(m) <- c("mz", "intensity")
@@ -161,7 +162,6 @@ setMethod("intensity", "MsBackendRawFileReader", function(object, ..., BPPARAM =
 setMethod("mz", "MsBackendRawFileReader", function(object, ..., BPPARAM = bpparam()) {
   IRanges::NumericList(lapply(peaksData(object, BPPARAM = BPPARAM), "[", , 1), compress = FALSE)
 })
-
 
 #' @exportMethod filterScan
 #' @rdname MsBackendRawFileReader
