@@ -74,7 +74,7 @@ NULL
   hdr_full <- .get_spectrum_metadata(x)
   
   hdr <- cbind(hdr, hdr_full)
-  
+
   ## Remove core spectra variables that contain only `NA`
   hdr <- S4Vectors::DataFrame(hdr[, !(MsCoreUtils::vapply1l(hdr, function(z) all(is.na(z))) &
                                       colnames(hdr) %in%

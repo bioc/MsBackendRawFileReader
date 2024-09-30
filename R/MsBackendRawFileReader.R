@@ -106,18 +106,19 @@ setMethod("peaksData", "MsBackendRawFileReader",
                                                                          scanIndex, BPPARAM=BPPARAM)
               
               rv <- lapply(pls, function(p){
-                if (all(c("centroid.mz", "centroid.intensity", "noises",
-                          "resolutions", "baselines") %in% colnames(p))){
+                if (all(c("centroid.mZ", "centroid.intensity", "noises",
+                          "resolutions", "baselines") %in% names(p))){
                   
                   m <- as.matrix(cbind(p$centroid.mZ,
-                                       p$centroid.intensity,
-                                       p$noises,
-                                       p$resolutions,
-                                       p$baselines))
+                                       p$centroid.intensity))
+## TODO(cp): add it 
+                                       #p$noises,
+                                       #p$resolutions,
+                                       #p$baselines))
                   
-                  colnames(m) <- c("mz", "intensity",
-                                   "noises", "resolutions", "baselines")
-                }else if (all(c("centroid.mz", "centroid.intensity") %in% colnames(p) )){
+                  colnames(m) <- c("mz", "intensity")
+                            #       "noises", "resolutions", "baselines")
+                }else if (all(c("centroid.mZ", "centroid.intensity") %in% names(p) )){
                   m <- as.matrix(cbind(p$centroid.mZ, p$centroid.intensity))
                   colnames(m) <- c("mz", "intensity")
                 }else if (length(p$mZ) > 0){
@@ -126,7 +127,7 @@ setMethod("peaksData", "MsBackendRawFileReader",
                   colnames(m) <- c("mz", "intensity")
                 }
                 else{
-                  warning(paste0("Scan ", p$scan, " has an empyt peaklist!"))
+                  warning(paste0("Scan ", p$scan, " has an empty peaklist!"))
                   m <- matrix(, 0, 2)
                   colnames(m) <- c("mz", "intensity")
                 }
@@ -170,7 +171,6 @@ setMethod("intensity", "MsBackendRawFileReader", function(object, ..., BPPARAM =
 setMethod("mz", "MsBackendRawFileReader", function(object, ..., BPPARAM = bpparam()) {
   IRanges::NumericList(lapply(peaksData(object, BPPARAM = BPPARAM), "[", , 1), compress = FALSE)
 })
-
 
 #' @exportMethod filterScan
 #' @rdname MsBackendRawFileReader

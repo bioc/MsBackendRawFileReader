@@ -37,6 +37,7 @@ be <- Spectra::backendInitialize(MsBackendRawFileReader::MsBackendRawFileReader(
                                  files = c(sample_raw_file))
 
 ## Run the MsBackend spectra variable test suite
+
 test_suite <- system.file("test_backends", "test_MsBackend",
                           package = "Spectra")
 
