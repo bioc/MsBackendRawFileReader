@@ -56,10 +56,6 @@ can be done on all platforms using the command:
 `rawrr::installRawFileReaderDLLs()`
 
 ```{r installAssemblies, echo=TRUE}
-if (isFALSE(rawrr::.checkDllInMonoPath())){
-  rawrr::installRawFileReaderDLLs()
-}
-
 if (isFALSE(file.exists(rawrr:::.rawrrAssembly()))){
  rawrr::installRawrrExe()
 }
